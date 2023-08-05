@@ -4,6 +4,7 @@
 #include <algorithm>
 
 // SE CREA LA ESTRUCTURA PERSONA PARA GUARDAR LOS DATOS DE CADA PERSONA;
+//========================================================== EJERCICIO 1 ==========================================================================
 struct Persona {
     std::string nombre, correo;
     int edad{}, puntaje{}, naipe[10];
@@ -26,6 +27,7 @@ int generar_numero_aleatorio(int min, int max) {
 std::string nombres[13] = {"As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jota", "Reina", "Rey"};
 std::string palos[4] = {"Picas", "Corazones", "Tréboles", "Diamantes"};
 
+//========================================================== EJERCICIO 2 ==========================================================================
 // FUNCION DEL EJERCICIO #2;
 void Ejercicio2(){
     std::cout << "\nEJERCICIO #2: \n";
@@ -61,6 +63,8 @@ void Ejercicio2(){
     }
 }
 
+//========================================================== EJERCICIO 3 ==========================================================================
+// FUNCION DEL EJERCICIO #3;
 void Ejercicio3(){
     std::cout << "\nEJERCICIO #3: \n";
     std::string cadena;
@@ -148,7 +152,6 @@ int main() {
         for (int j = 0; j < 10; j++) {
             int carta, palo, naipe;
             bool repetido;
-
             do {
                 carta = generar_numero_aleatorio(0, 12); // SE GENERA EL NUMERO ALEATORIO DE CARTA;
                 palo = generar_numero_aleatorio(0, 3); // SE GENERA EL NUMERO ALEATORIO DEL PALO;
@@ -161,7 +164,6 @@ int main() {
                         break;
                     }
                 }
-
                 if (!repetido) {
                     persona[i].naipe[j] = naipe;
                     cartasAsignadas[10 * i + j] = naipe; // AGREGA LA CARTA AL ARRAY;
@@ -172,7 +174,6 @@ int main() {
     }
 
     // MOSTRAR LAS CARTAS DE CADA PERSONA TIRADAS POR RONDAS;
-    // Dentro del bucle de la ronda
     for (int ronda = 0; ronda < 10; ronda++) {
         std::cout << "Ronda " << ronda + 1 << std::endl;
 
