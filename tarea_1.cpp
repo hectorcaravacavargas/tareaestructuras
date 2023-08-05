@@ -26,6 +26,86 @@ int generar_numero_aleatorio(int min, int max) {
 std::string nombres[13] = {"As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jota", "Reina", "Rey"};
 std::string palos[4] = {"Picas", "Corazones", "Tréboles", "Diamantes"};
 
+// FUNCION DEL EJERCICIO #2;
+void Ejercicio2(){
+    std::cout << "\nEJERCICIO #2: \n";
+    int spaceBar, nMas, filas = 10;
+    for (int i = 1; i <= filas; i++) {
+        // SE IDENTIFICA UN PATRON, SI ES PAR NO TIENE ESPACIOS Y TIENE 12 '+';
+        if (i % 2 == 0) {
+            spaceBar = 0;
+            nMas = 12;
+        }
+        // SI ES IMPAR TIENE 6 ESPACIOS Y 1 '+';
+        else {
+            spaceBar = 6;
+            nMas = 1;
+        }
+        // SE IMPRIMEN LA CANTIDAD DE ESPACIOS DE ACUERDO A LO ANTERIOR;
+        for (int j = 0; j < spaceBar; j++) {
+            std::cout << " ";
+        }
+        // ACA SE IMPRIMEN LOS SIMBOLOS '+';
+        for (int x = 1; x <= nMas; x++) {
+            // SE TOMA LA DECISION DE SI SE HA LLEGADO A 6, ENTONCES HAY QUE IMPRIMIR 3 ESPACIOS;
+            if (x == 6) {
+                for (int k = 1; k <= 3; k++) {
+                    std::cout << " ";
+                }
+            }
+            else {
+                std::cout << "+";
+            }
+        }
+        std::cout << "\n";
+    }
+}
+
+void Ejercicio3(){
+    std::cout << "\nEJERCICIO #3: \n";
+    std::string cadena;
+    short int cont_a = 0, cont_e = 0, cont_i = 0, cont_o = 0, cont_u = 0;
+    char letra;
+
+    std::cout << "Ingrese una frase, la que usted guste: \n";
+    getline(std::cin, cadena);
+
+    for (int i = 0; i < cadena.length(); i++) { // ACA SE USA EL METODO LENGTH PARA SABER LA LONGITUD DE LA CADENA INGRESADA;
+        letra = cadena[i];
+
+        // SE USA SWITCH-CASE DEBIDO A QUE VENIAN EN LAS DIAPOSITIVAS DE LA SEMANA #1;
+        switch (letra)
+        {
+
+        // SE IDENTIFICAN LOS CASOS POSIBLES EN LOS QUE EL USUARIO PUEDE INGRESAR LAS VOCALES (MAYUSCULAS Y MINUSCULAS);
+        case 'a':
+        case 'A': cont_a++;
+            break;
+        case 'e':
+        case 'E': cont_e++;
+            break;
+        case 'i':
+        case 'I': cont_i++;
+            break;
+        case 'o':
+        case 'O': cont_o++;
+            break;
+        case 'u':
+        case 'U': cont_u++;
+            break;
+        default:
+            break;
+        }
+    }
+
+    // COMO SE INICIALIZA EN 0 LOS CONTADORES, SE MUESTRAN LAS VECES QUE APARECEN LAS VOCALES, EN CASO DE NO HABER UNA VOCAL SE MUESTRA 0;
+    std::cout << "\nLa cantidad de vocales son: \n"
+        "Cantidad de vocal a: " << cont_a <<
+        "\nCantidad de vocal e: " << cont_e <<
+        "\nCantidad de vocal i: " << cont_i <<
+        "\nCantidad de vocal o: " << cont_o <<
+        "\nCantidad de vocal u: " << cont_u << std::endl;
+}
 int main() {
     std::cout << "NOTA: Profe algunas palabras escritas estan en mayuscula pero no es por gritar es porque se ve mejor esteticamente :)";
     std::cout << "TAREA #1:" << std::endl;
@@ -143,87 +223,11 @@ int main() {
 	            +
          ++++++   ++++++ 	así sucesivamente hasta completar 10 filas.
     */
-    std::cout << "\nEJERCICIO #2: \n";
-    int spaceBar, nMas, filas = 10;
-    for (int i = 1; i <= filas; i++) {
-        // SE IDENTIFICA UN PATRON, SI ES PAR NO TIENE ESPACIOS Y TIENE 12 '+';
-        if (i % 2 == 0) {
-            spaceBar = 0;
-            nMas = 12;
-        }
 
-        // SI ES IMPAR TIENE 6 ESPACIOS Y 1 '+';
-        else {
-            spaceBar = 6;
-            nMas = 1;
-        }
-
-        // SE IMPRIMEN LA CANTIDAD DE ESPACIOS DE ACUERDO A LO ANTERIOR;
-        for (int j = 0; j < spaceBar; j++) {
-            std::cout << " ";
-        }
-
-        // ACA SE IMPRIMEN LOS SIMBOLOS '+';
-        for (int x = 1; x <= nMas; x++) {
-            // SE TOMA LA DECISION DE SI SE HA LLEGADO A 6, ENTONCES HAY QUE IMPRIMIR 3 ESPACIOS;
-            if (x == 6) {
-                for (int k = 1; k <= 3; k++) {
-                    std::cout << " ";
-                }
-            }
-            else {
-                std::cout << "+";
-            }
-
-        }
-
-        std::cout << "\n";
-    }
+   // SE LLAMA LA FUNCION EJERCICIO 2;
+    Ejercicio2();
 
     /* EJERCICIO 3: Realice una función que lea una frase, calcule e imprima el número de repeticiones de cada vocal.  */
-    std::cout << "\nEJERCICIO #3: \n";
-    std::string cadena;
-    short int cont_a = 0, cont_e = 0, cont_i = 0, cont_o = 0, cont_u = 0;
-    char letra;
-
-    std::cout << "Ingrese una frase, la que usted guste: \n";
-    getline(std::cin, cadena);
-
-    for (int i = 0; i < cadena.length(); i++) { // ACA SE USA EL METODO LENGTH PARA SABER LA LONGITUD DE LA CADENA INGRESADA;
-        letra = cadena[i];
-
-        // SE USA SWITCH-CASE DEBIDO A QUE VENIAN EN LAS DIAPOSITIVAS DE LA SEMANA #1;
-        switch (letra)
-        {
-
-        // SE IDENTIFICAN LOS CASOS POSIBLES EN LOS QUE EL USUARIO PUEDE INGRESAR LAS VOCALES (MAYUSCULAS Y MINUSCULAS);
-        case 'a':
-        case 'A': cont_a++;
-            break;
-        case 'e':
-        case 'E': cont_e++;
-            break;
-        case 'i':
-        case 'I': cont_i++;
-            break;
-        case 'o':
-        case 'O': cont_o++;
-            break;
-        case 'u':
-        case 'U': cont_u++;
-            break;
-        default:
-            break;
-        }
-    }
-
-    // COMO SE INICIALIZA EN 0 LOS CONTADORES, SE MUESTRAN LAS VECES QUE APARECEN LAS VOCALES, EN CASO DE NO HABER UNA VOCAL SE MUESTRA 0;
-    std::cout << "\nLa cantidad de vocales son: \n"
-        "Cantidad de vocal a: " << cont_a <<
-        "\nCantidad de vocal e: " << cont_e <<
-        "\nCantidad de vocal i: " << cont_i <<
-        "\nCantidad de vocal o: " << cont_o <<
-        "\nCantidad de vocal u: " << cont_u << std::endl;
-
+    Ejercicio3();
     return 0;
 }
