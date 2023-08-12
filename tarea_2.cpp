@@ -8,7 +8,7 @@
 
 // CREATE ARRAY AND MATRIZ;
 int array[n], matriz[n][m];
-char arrayChar[n];
+char arrayChar[m];
 std::string stringArray[n][m];
 
 // INSTRUCTION #1;
@@ -31,8 +31,8 @@ void fillArrayRandomNumber(){
 
 // INSTRUCTION #2;
 void displayArrayChar(){
-    std::cout << "\nMostrando el array con los caracteres ingresados por el usuario..." << std::endl;
-    for(int i = 0; i < n; i++){
+    std::cout << "\nMostrando el array con los characteres ingresados por el usuario..." << std::endl;
+    for(int i = 0; i < m; i++){
         std::cout << "|" << arrayChar[i]; std::cout << "|";
     }
     std::cout << "\n";
@@ -40,7 +40,7 @@ void displayArrayChar(){
 
 void fillArrayChar(){
     std::cout << "\nRellenando el array char con los elementos del usuario: " << std::endl;
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < m; i++){
         std::cout << "Digite el elemento de la posicion [" << i << "]: ";
         std::cin >> arrayChar[i];
     }
@@ -74,25 +74,20 @@ void fillMatrizWithArray() {
 }
 
 // INSTRUCTION #4;
-void displayStringMatriz(){
-    std::cout << "\nMostrando la matriz de string introducidos por el usuario..." << std::endl;
-    for(int i = 0; i < n; i++){
-        for(int j =  0; j < m; j++){
-            std::cout << "|" << stringArray[i][j]; std::cout << "|";
-        }
-        std::cout << "\n";
-    }
-}
-
 void fillStringMatriz(){
     std::cout << "\nRellenando la matriz de string con los elementos del usuario: " << std::endl;
+    std::cin.ignore();
     for(int i = 0; i < n; i++){
         for(int j = 0; j < m; j++){
-            std::cout << "Digite los caracteres que guste en la posicion [" << i << "][" << j << "]: ";
+            std::cout << "Digite los characteres que guste en la posicion [" << i << "][" << j << "]: ";
+            if (i != 0 || j != 0) {
+                std::cin.ignore();
+            }
             getline(std::cin, stringArray[i][j]);
-            std::cin.ignore();
         }
     }
+
+    std::cout << "\nAgregado correctamente\n";
 }
 
 // INSTRUCTION #5;
@@ -100,55 +95,47 @@ void fillStringMatriz(){
 // arrayChar[n]
 // stringArray[i][j]
 
-void fillMatrizWithChar(){
-    int maxCharRow = -1, maxCharColumn = -1, maxCharCount = 0;
-    for (int row = 0; row < n; ++row) {
-        for (int column = 0; column < m; ++column) {
+void fillMatrizWithChar() {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::string chain = stringArray[i][j];
+            std::cout << "\nEn la posicion [" << i << "][" << j << "]: \n";
 
-            int charCount = 0;
-            for (char c : stringArray[row][column]) {
-                for (int i = 0; i < n; ++i) {
-                    if (c == arrayChar[i]) {
-                        charCount++;
-                        break;
+            for (int x = 0; x < m; x++) { // LOOP TROUGH THE LETTERS OF THE ARRAYCHAR
+                char character = std::toupper(arrayChar[x]);
+                int cont = 0;
+
+                for (int k = 0; k < chain.length(); k++) { // LOOP TROUGH CHARACTERS IN CELL
+                    if (std::toupper(chain[k]) == character) {
+                        cont++;
                     }
                 }
-            }
 
-            if (charCount > maxCharCount) {
-                maxCharCount = charCount;
-                maxCharRow = row;
-                maxCharColumn = column;
+                std::cout << "La letra " << character << " se repite " << cont << " veces. \n";
             }
+            std::cout << std::endl;
         }
-    }
-
-    // Imprimir la respuesta
-    if (maxCharRow != -1 && maxCharColumn != -1) {
-        std::cout << "La celda " << maxCharRow << "," << maxCharColumn << " tiene " << maxCharCount
-        << " char de los que aparecen en el arreglo." << std::endl;
-    } else {
-        std::cout << "No se encontró ninguna celda con caracteres coincidentes." << std::endl;
     }
 }
 
+
 // INSTRUCTION #6;
 void mostrarMenu(){
-    int opcion;
-    bool salir = false;
+    int option;
+    bool exit = false;
 
     do{
         std::cout << "\n\t.:MENU:." << std::endl;
         std::cout << "1. Mostrar el array de numeros random." << std::endl;
-        std::cout << "2. Mostrar y solicitar el array de caracteres." << std::endl;
+        std::cout << "2. Mostrar y solicitar el array de characteres." << std::endl;
         std::cout << "3. Mostrar la matriz de numeros random." << std::endl;
-        std::cout << "4. Solicitar y mostrar la matriz de string." << std::endl;
+        std::cout << "4. Solicitar la matriz de string." << std::endl;
         std::cout << "5. Mostrar la matriz de string y comparar con el array de char." << std::endl;
         std::cout << "6. Salir." << std::endl;
-        std::cout << "Digite la opcion que desea: ";
-        std::cin >> opcion;
+        std::cout << "Digite la option que desea: ";
+        std::cin >> option;
 
-        switch (opcion)
+        switch (option)
         {
         case 1:
             fillArrayRandomNumber();
@@ -163,16 +150,17 @@ void mostrarMenu(){
             fillStringMatriz();
             break;
         case 5:
-            fillMatrizWithChar();  // Usar la función para mostrar, no llenar
+            fillMatrizWithChar();
             break;
         case 6:
             std::cout << "Saliendo del programa..." << std::endl;
-            salir = true;
+            exit = true;
             break;
         default:
+            std::cout << "option no valida, intente de nuevo." << std::endl;
             break;
         }
-    } while (!salir);
+    } while (exit == false);
 }
 
 // MAIN FUNCTION;
