@@ -84,8 +84,8 @@ int greatestSum(Node *list, Node *list2, Node *list3)
 }
 
 void repeateNumbers(Node *listaX, Node *listaY) {
-    int counterX[101] = {0};
-    int counterY[101] = {0};
+    int counterX[1001] = {0};
+    int counterY[1001] = {0};
     
     Node *auxA = listaX;
     Node *auxB = listaY;
