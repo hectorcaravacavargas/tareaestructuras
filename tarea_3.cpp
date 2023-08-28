@@ -1,5 +1,4 @@
 #include <iostream>
-
 struct Node
 {
     int number;
@@ -83,36 +82,35 @@ int greatestSum(Node *list, Node *list2, Node *list3)
     }
 }
 
-void repeateNumbers(Node *listaX, Node *listaY) {
-    int counterX[1001] = {0};
-    int counterY[1001] = {0};
-    
-    Node *auxA = listaX;
-    Node *auxB = listaY;
-
-    while (auxA != NULL) {
-        counterX[auxA->number]++;
-        auxA = auxA->sig;
-    }
-
-    while (auxB != NULL) {
-        counterY[auxB->number]++;
-        auxB = auxB->sig;
-    }
-
-    auxA = listaX;
-    int control = 0;
-    while (auxA != NULL) {
-        if (counterX[auxA->number] == 3 && counterY[auxA->number] == 3) {
-            control++;
-            if (control == 3)
-            {
-                control += auxA->number;
-                control -= 3;
-                std::cout << control << " is repeated extactly 3 times in both lists\n";
-            }
+int contOcurrences(Node *list, int n)
+{
+    Node *aux = list;
+    int count = 0;
+    while (aux != nullptr)
+    {
+        if (aux->number == n)
+        {
+            count++;
         }
-        auxA = auxA->sig;
+        aux = aux->sig;
+    }
+    return count;
+}
+
+void repeateNumbers(Node *list1, Node *list2) {
+    Node *current = list1;
+    bool found = false;
+
+    while (current != nullptr) {
+        if (contOcurrences(list2, current->number) == 3) {
+            found = true;
+            std::cout << "The number: " << current->number << " is repeat exactly 3 times." << std::endl;
+        }
+        current = current->sig;
+    }
+
+    if (!found) {
+        std::cout << "There aren'n numbers repeat exactly 3 times." << std::endl;
     }
 }
 
